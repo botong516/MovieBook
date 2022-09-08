@@ -1,25 +1,35 @@
-import { defineConfig } from 'umi';
+import { defineConfig } from '@umijs/max';
 
 export default defineConfig({
-  nodeModulesTransform: {
-    type: 'none',
-  },
-  layout:{ 
-    name: 'MoviesBook',
-    locale: true
+  antd: {},
+  access: {},
+  model: {},
+  initialState: {},
+  request: {},
+  layout: {
+    title: 'MoviesBook',
   },
   routes: [
-    // { path: '/login', component: 'login' },
-    { path: '/home', component: '@/components/Home' },
-    { path: '/register', component: '@/components/Register' },
-    { path: '/login', component: '@/components/Login' },
     {
       path: '/',
-      // component: '@/layouts/index',
-      routes: [
-        { path: '/movies', component: '@/pages/movies' },
-      ],
-    }, 
+      redirect: '/home',
+    },
+    {
+      name: '用户主页',
+      path: '/home',
+      component: './Home',
+    },
+    {
+      name: '最受欢迎TOP250',
+      path: '/access',
+      component: './Access',
+    },
+    {
+        name: '电影搜索',
+        path: '/table',
+        component: './Table',
+    },
   ],
-  fastRefresh: {},
+  npmClient: 'yarn',
 });
+

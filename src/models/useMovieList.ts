@@ -5,6 +5,7 @@ import { queryMovies, queryMovieList } from '@/services/movies';
 export default function useMovieList(params: { pageSize: number; current: number }) {
   const msg = useRequest(() =>{
     console.log(1111)
+    // queryMovieList()
     const res = queryMovies()
     console.log(2222, res)
     return res
@@ -13,6 +14,7 @@ export default function useMovieList(params: { pageSize: number; current: number
   const like = async (id: string) => {
     try {
       // await removeProducts(id);
+      console.log(id, params);
       message.success('success');
       msg.run();
     } catch (error) {
