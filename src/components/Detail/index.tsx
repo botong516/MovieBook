@@ -1,14 +1,7 @@
 import { movie } from '@/services/top250';
-import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Image, Avatar, Space, Descriptions, Badge, Tooltip } from 'antd';
+import { Image, Avatar,  Descriptions, Badge, Tooltip } from 'antd';
 import React from 'react';
 
-const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
 
 const MovieDetail: React.FC<{ movies:movie[] }> = ({
   movies,
