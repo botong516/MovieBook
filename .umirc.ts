@@ -15,7 +15,7 @@ export default defineConfig({
       redirect: '/home',
     },
     {
-      name: '用户主页',
+      name: '主页',
       path: '/home',
       component: './Home',
     },
@@ -30,9 +30,9 @@ export default defineConfig({
       component: './Top250',
     },
     {
-        name: '电影Table',
-        path: '/table',
-        component: './Table',
+        name: '用户收藏',
+        path: '/User',
+        component: './User',
     },
     {
       name: '电影详情',

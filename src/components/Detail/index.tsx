@@ -6,7 +6,6 @@ import React from 'react';
 const MovieDetail: React.FC<{ movies:movie[] }> = ({
   movies,
 }) => {
-
   return (
     <div>
       <Descriptions title={<Image width={200} src='https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_Ratio0.6762_AL_.jpg'></Image>} layout="vertical">
