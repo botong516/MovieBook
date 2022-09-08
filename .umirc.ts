@@ -10,6 +10,9 @@ export default defineConfig({
   },
   routes: [
     // { path: '/login', component: 'login' },
+    { path: '/home', component: '@/components/Home' },
+    { path: '/register', component: '@/components/Register' },
+    { path: '/login', component: '@/components/Login' },
     {
       path: '/',
       // component: '@/layouts/index',
