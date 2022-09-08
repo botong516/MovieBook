@@ -1,7 +1,12 @@
-import { movie } from '@/services/movies';
+import { MovieList } from '@/services/search';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Image, List, Space, Tag, Badge, Card } from 'antd';
-import React from 'react';
+import { Image, List, Space, Input } from 'antd';
+import {
+  ProList,
+} from '@ant-design/pro-components';
+import React, { useCallback } from 'react';
+
+const { Search } = Input;
 
 const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
   <Space>
@@ -10,12 +15,25 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
   </Space>
 );
 
-const MovieList: React.FC<{ movies:movie[] }> = ({
+const MovieSearch: React.FC<{ movies:MovieList[] }> = ({
   movies,
 }) => {
 
+  const onSearch  = useCallback(() => {
+      console.log(1);
+  }, []);
+
+  console.log(777, movies)
   return (
     <div>
+      <Search
+        placeholder="input search text"
+        allowClear
+        enterButton="Search"
+        size="large"
+        onSearch={onSearch}
+      />
+    <Space>
       <List
         itemLayout="vertical"
         size="large"
@@ -41,18 +59,15 @@ const MovieList: React.FC<{ movies:movie[] }> = ({
                 width={100}
                 src={item.image}
               />}
-              title={item.fullTitle}
-              description={item.crew}
+              title={item.title}
+              description={item.description}
             />
-            <Badge.Ribbon text={item.imDbRatingCount} />
-            {/* <Tag color="green">{item.rank}</Tag> */}
-            <Tag color="green">{item.year}</Tag>
-            <Tag color="green">{item.imDbRating}</Tag>
           </List.Item>
         )}
       />
+      </Space>
   </div>
   )
 };
 
-export default MovieList;
+export default MovieSearch;

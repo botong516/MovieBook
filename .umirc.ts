@@ -20,15 +20,25 @@ export default defineConfig({
       component: './Home',
     },
     {
-      name: '最受欢迎TOP250',
-      path: '/access',
-      component: './Access',
+      name: '电影搜索',
+      path: '/search',
+      component: './Search',
     },
     {
-        name: '电影搜索',
+      name: '最受欢迎TOP250',
+      path: '/top250',
+      component: './Top250',
+    },
+    {
+        name: '电影Table',
         path: '/table',
         component: './Table',
     },
+    {
+      name: '电影详情',
+      path: '/detail',
+      component: './Detail',
+  },
   ],
   npmClient: 'yarn',
 });

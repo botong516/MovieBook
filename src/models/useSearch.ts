@@ -1,32 +1,31 @@
 import { useRequest } from 'umi';
-import { Button, message } from 'antd';
-import { queryMovies, queryMovieList } from '@/services/movies';
+import {  message } from 'antd';
+import { SearchMovieList } from '@/services/search';
 
-export default function useMovieList(params: { pageSize: number; current: number }) {
+
+const useSearch = () => {
   const msg = useRequest(() =>{
-    console.log(1111)
-    // queryMovieList()
-    const res = queryMovies()
-    console.log(2222, res)
+    const res = SearchMovieList()
     return res
   });
 
   const like = async (id: string) => {
     try {
       // await removeProducts(id);
-      console.log(id, params);
+      // console.log(id, keyword);
       message.success('success');
       msg.run();
     } catch (error) {
       message.error('fail');
     }
   };
-
-
+  console.log(2222, msg?.data??[])
   return {
     dataSource: msg.data,
     reload: msg.run,
     loading: msg.loading,
     like,
   };
-}
+};
+
+export default useSearch

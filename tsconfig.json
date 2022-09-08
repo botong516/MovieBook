@@ -1,3 +1,33 @@
 {
-  "extends": "./src/.umi/tsconfig.json"
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["es7", "dom"],
+    "strict": true,
+    "sourceMap": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@@/*": [".ace/*"],
+      "@@initialState": [".ace/plugin-initial-state/runtime.tsx"],
+    },
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
+  },
+  "include": ["src",".umi", "./typings.d.ts"],
+  "exclude": ["node_modules", "build", ".storybook", ".ace"]
 }
