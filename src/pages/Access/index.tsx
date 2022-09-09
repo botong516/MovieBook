@@ -8,8 +8,7 @@ const AccessPage: React.FC = () => {
       header={{
         title: '最收欢迎250',
       }}
-    >
-    </PageContainer>
+    ></PageContainer>
   );
 };
 

@@ -22,12 +22,10 @@ const MovieSearch: React.FC<{ movies: movie[] }> = ({ movies }) => {
     // history.push('/table/'+ id);
   }, []);
 
-
   const detail = useCallback((id: string) => {
     console.log(11111111, id);
-    history.push('/detail/'+ id);
+    history.push('/detail/' + id);
   }, []);
-
 
   return (
     <div>
@@ -35,7 +33,7 @@ const MovieSearch: React.FC<{ movies: movie[] }> = ({ movies }) => {
         itemLayout="vertical"
         size="large"
         pagination={{
-           onChange: (page) => {
+          onChange: (page) => {
             console.log(page);
           },
           pageSize: 1000,
@@ -54,14 +52,14 @@ const MovieSearch: React.FC<{ movies: movie[] }> = ({ movies }) => {
                   key="list-vertical-star-o"
                 />
               </div>,
-              
+
               // eslint-disable-next-line react/jsx-key
               <div onClick={() => like(item.id)}>
-              <IconText
-                icon={LikeOutlined}
-                text="156"
-                key="list-vertical-like-o"
-              />
+                <IconText
+                  icon={LikeOutlined}
+                  text="156"
+                  key="list-vertical-like-o"
+                />
               </div>,
 
               <IconText

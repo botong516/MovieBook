@@ -1,8 +1,7 @@
 import { useRequest } from 'umi';
-import {  message } from 'antd';
-import { useEffect, useState } from "react";
+import { message } from 'antd';
+import { useEffect, useState } from 'react';
 import { queryMovieList, SearchMovieResp } from '@/services/search';
-
 
 const useSearch = () => {
   // const [movies, setMovies] = useState<SearchMovieResp>();
@@ -33,4 +32,4 @@ const useSearch = () => {
   };
 };
 
-export default useSearch
+export default useSearch;

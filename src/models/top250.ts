@@ -1,17 +1,17 @@
 import { useRequest } from 'umi';
-import {  message } from 'antd';
-import { useEffect, useRef, useState } from "react";
+import { message } from 'antd';
+import { useEffect, useRef, useState } from 'react';
 import { queryMovieList, queryMovies, Movies } from '@/services/top250';
 
-const useMovieList  = () => {
+const useMovieList = () => {
   const [movies, setMovies] = useState<Movies>();
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await queryMovieList();
-      setMovies(data)
-    }
-    fetchData()
+      setMovies(data);
+    };
+    fetchData();
   }, []);
 
   const like = async (id: string) => {
@@ -22,7 +22,7 @@ const useMovieList  = () => {
       message.error('fail');
     }
   };
-  
+
   return {
     dataSource: movies,
     reload: '',
@@ -31,4 +31,4 @@ const useMovieList  = () => {
   };
 };
 
-export default useMovieList
+export default useMovieList;

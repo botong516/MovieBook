@@ -5,8 +5,7 @@ import styles from './index.less';
 import MovieList from '@/components/Top250';
 
 const MovieSearchPage: React.FC = () => {
-  const { dataSource, reload, loading, like }  = useModel('top250');
-    console.log(66668990, dataSource?.items)
+  const { dataSource, reload, loading, like } = useModel('top250');
   return (
     <PageContainer ghost>
       <div className={styles.container}>

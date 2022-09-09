@@ -1,13 +1,9 @@
 import { movie } from '@/services/top250';
-import { Tabs, Tag,  Space, Badge, Table } from 'antd';
+import { Tabs, Tag, Space, Badge, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React from 'react';
 
-
-const User: React.FC<{ movies:movie[] }> = ({
-  movies,
-}) => {
-
+const User: React.FC<{ movies: movie[] }> = ({ movies }) => {
   interface DataType {
     key: string;
     name: string;
@@ -15,13 +11,13 @@ const User: React.FC<{ movies:movie[] }> = ({
     address: string;
     tags: string[];
   }
-  
+
   const columns: ColumnsType<DataType> = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: text => <a>{text}</a>,
+      render: (text) => <a>{text}</a>,
     },
     {
       title: 'Age',
@@ -39,7 +35,7 @@ const User: React.FC<{ movies:movie[] }> = ({
       dataIndex: 'tags',
       render: (_, { tags }) => (
         <>
-          {tags.map(tag => {
+          {tags.map((tag) => {
             let color = tag.length > 5 ? 'geekblue' : 'green';
             if (tag === 'loser') {
               color = 'volcano';
@@ -91,16 +87,16 @@ const User: React.FC<{ movies:movie[] }> = ({
 
   return (
     <div>
-        <Tabs defaultActiveKey="1">
-          <Tabs.TabPane tab="点赞列表" key="1">
+      <Tabs defaultActiveKey="1">
+        <Tabs.TabPane tab="点赞列表" key="1">
           <Table columns={columns} dataSource={data} />
-          </Tabs.TabPane>
-          <Tabs.TabPane tab="收藏列表" key="2">
+        </Tabs.TabPane>
+        <Tabs.TabPane tab="收藏列表" key="2">
           <Table columns={columns} dataSource={data} />
-          </Tabs.TabPane>
-        </Tabs>
+        </Tabs.TabPane>
+      </Tabs>
     </div>
-  )
+  );
 };
 
 export default User;

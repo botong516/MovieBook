@@ -1,15 +1,14 @@
 import { useRequest } from 'umi';
-import {  message } from 'antd';
+import { message } from 'antd';
 import { queryMovies } from '@/services/top250';
-
 
 const useMovieList = () => {
   const msg = useRequest(() => {
-    console.log(1111)
+    console.log(1111);
     // queryMovieList()
-    const res = queryMovies()
-   
-    return res
+    const res = queryMovies();
+
+    return res;
   });
 
   const like = async (id: string) => {
@@ -21,13 +20,13 @@ const useMovieList = () => {
       message.error('fail');
     }
   };
-  
+
   return {
-    dataSource: msg?.data??[],
+    dataSource: msg?.data ?? [],
     reload: msg?.run,
     loading: msg?.loading,
     like,
   };
 };
 
-export default useMovieList
+export default useMovieList;

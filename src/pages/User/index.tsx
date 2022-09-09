@@ -5,7 +5,7 @@ import styles from './index.less';
 import User from '@/components/User';
 
 const MovieDetailPage: React.FC = () => {
-  const { dataSource, reload, loading, like }  = useModel('user');
+  const { dataSource, reload, loading, like } = useModel('user');
   return (
     <PageContainer ghost>
       <div className={styles.container}>
