@@ -1,5 +1,10 @@
 import { defineConfig } from '@umijs/max';
-import { BookOutlined, FireOutlined, HistoryOutlined, SearchOutlined} from '@ant-design/icons';
+import {
+  BookOutlined,
+  FireOutlined,
+  HistoryOutlined,
+  SearchOutlined,
+} from '@ant-design/icons';
 
 export default defineConfig({
   antd: {},
@@ -12,7 +17,7 @@ export default defineConfig({
   },
   proxy: {
     '/api': {
-      target: 'http://localhost:8080',
+      target: 'https://moviebook-log.herokuapp.com/',
       changeOrigin: true,
       // pathRewrite: { '^/api': '' },
     },
