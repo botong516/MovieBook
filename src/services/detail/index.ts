@@ -1,51 +1,119 @@
-export function queryMovieList() {
-  return fetch('http://localhost:8080/api/v1/movie/top250').then(res => res.json());
+export async function queryMovieDetail(imdbID: string) {
+  let resp: MovieDetailResp = {
+  };
+   await fetch('http://localhost:8080/api/v1/movie/'+imdbID)
+                .then(res => res.json())
+                .then(res => { 
+                  resp = res 
+                });
+   
+    return resp;
 }
 
-export interface MovieList {
-	id: string;
-	resultType: string;
-	image: string;
-	title: string;
-	description: string;
-}
+  export interface DirectorList {
+      id: string;
+      name: string;
+  }
 
-export interface SearchMovieResp {
-	searchType: string;
-	expression: string;
-	results: MovieList[];
-	errorMessage: string;
-}
+  export interface WriterList {
+      id: string;
+      name: string;
+  }
 
-// 先用 setTimeout 模拟一个请求，正常的写法如上所示
-export function SearchMovieList() {
-  return Promise.resolve({data: {
-    searchType: "Movie",
-    expression: "xs",
-    results: [
-      {
-        id: "tt0057693",
-        resultType: "Title",
-        image: "https://m.media-amazon.com/images/M/MV5BNjgyYjBhNjgtNzcwMi00YzRmLTgwM2EtNDNjNWRlZjhkZjE2XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_Ratio0.7273_AL_.jpg",
-        title: "X: The Man with the X-Ray Eyes",
-        description: "(1963)"
-      },
-      {
-        id: "tt6787084",
-        resultType: "Title",
-        image: "https://m.media-amazon.com/images/M/MV5BZGQ1YzI1MDEtN2U0OC00NjQzLTk4ZDgtNjY2ZmE3NjY4ZTI4XkEyXkFqcGdeQXVyMTM2MzAwOA@@._V1_Ratio0.7273_AL_.jpg",
-        title: "X-Story",
-        description: "(2016) (Short)"
-      },
-      {
-        id: "tt11519526",
-        resultType: "Title",
-        image: "https://m.media-amazon.com/images/M/MV5BYTYyNzVkZDQtYTYxYy00MDBhLTg1ZmItMWE1NjlhNTM3Njg0XkEyXkFqcGdeQXVyNTMyNjAzMDU@._V1_Ratio0.7273_AL_.jpg",
-        title: "Xsunami",
-        description: "(2019)"
-      }
-    ],
-    errorMessage: ""
-  }});
-}
+  export interface StarList {
+      id: string;
+      name: string;
+  }
+
+  export interface ActorList {
+      id: string;
+      image: string;
+      name: string;
+      asCharacter: string;
+  }
+
+  export interface GenreList {
+      key: string;
+      value: string;
+  }
+
+  export interface CompanyList {
+      id: string;
+      name: string;
+  }
+
+  export interface CountryList {
+      key: string;
+      value: string;
+  }
+
+  export interface LanguageList {
+      key: string;
+      value: string;
+  }
+
+  export interface BoxOffice {
+      budget: string;
+      openingWeekendUSA: string;
+      grossUSA: string;
+      cumulativeWorldwideGross: string;
+  }
+
+  export interface Similar {
+      id: string;
+      title: string;
+      image: string;
+      imDbRating: string;
+  }
+
+  export interface MovieDetailResp {
+      id: string;
+      title: string;
+      originalTitle: string;
+      fullTitle: string;
+      type: string;
+      year: string;
+      image: string;
+      releaseDate: Date;
+      runtimeMins: string;
+      runtimeStr: string;
+      plot: string;
+      plotLocal: string;
+      plotLocalIsRtl: boolean;
+      awards: string;
+      directors: string;
+      directorList: DirectorList[];
+      writers: string;
+      writerList: WriterList[];
+      stars: string;
+      starList: StarList[];
+      actorList: ActorList[];
+      fullCast?: any;
+      genres: string;
+      genreList: GenreList[];
+      companies: string;
+      companyList: CompanyList[];
+      countries: string;
+      countryList: CountryList[];
+      languages: string;
+      languageList: LanguageList[];
+      contentRating: string;
+      imDbRating: string;
+      imDbRatingVotes: string;
+      metacriticRating: string;
+      ratings?: any;
+      wikipedia?: any;
+      posters?: any;
+      images?: any;
+      trailer?: any;
+      boxOffice: BoxOffice;
+      tagline?: any;
+      keywords: string;
+      keywordList: string[];
+      similars: Similar[];
+      tvSeriesInfo?: any;
+      tvEpisodeInfo?: any;
+      errorMessage?: any;
+  }
+
 

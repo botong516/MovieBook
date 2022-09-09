@@ -9,6 +9,13 @@ export default defineConfig({
   layout: {
     title: 'MoviesBook',
   },
+  proxy: {
+    '/api': {
+      'target': 'http://localhost:8080',
+      'changeOrigin': true,
+      'pathRewrite': { '^/api' : '' },
+    },
+  },
   routes: [
     {
       path: '/',
@@ -36,7 +43,7 @@ export default defineConfig({
     },
     {
       name: '电影详情',
-      path: '/detail',
+      path: '/detail/:id',
       component: './Detail',
   },
   ],

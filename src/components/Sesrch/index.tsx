@@ -1,10 +1,12 @@
 import { MovieList } from '@/services/search';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Image, List, Space, Input } from 'antd';
+import { Image, List, Space, Input, Empty } from 'antd';
 import {
   ProList,
 } from '@ant-design/pro-components';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
+import { queryMovieList, SearchMovieResp } from '@/services/search';
+import { history } from 'umi';
 
 const { Search } = Input;
 
@@ -16,44 +18,53 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
 );
 
 const MovieSearch: React.FC<{ movies:MovieList[] }> = ({
-  movies,
 }) => {
+  const [keyword, setKeyword] = useState<string>('');
+  const [movieList, setMovieList] = useState<MovieList[]>();
 
-  const onSearch  = useCallback(() => {
-      console.log(1);
+  const onSearch  = useCallback((value: any) => {
+    setKeyword(value)
+    const fetchData = async () => {
+      const data = await queryMovieList(value);
+      setMovieList(data?.results)
+    }
+    fetchData()
+  }, [keyword]);
+
+  const detail = useCallback((id: string) => {
+    console.log(11111111, id);
+    history.push('/detail/'+ id);
   }, []);
 
-  console.log(777, movies)
   return (
     <div>
       <Search
-        placeholder="input search text"
+        placeholder="input search movie title"
         allowClear
         enterButton="Search"
         size="large"
         onSearch={onSearch}
       />
-    <Space>
+      { (movieList) ? (
       <List
         itemLayout="vertical"
         size="large"
-        pagination={{
-          onChange: page => {
-            console.log(page);
-          },
-          pageSize: 1000,
-        }}
-        dataSource={movies}
+        // pagination={{
+        //   onChange: page => {
+        //     console.log(page);
+        //   },
+        //   pageSize: 1000,
+        // }}
+        dataSource={movieList}
         renderItem={item => (
           <List.Item
             key={item.id}
+            onClick={() => detail(item.id)}
             actions={[
               <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
               <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-              <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
             ]}
           >
-            
             <List.Item.Meta
               avatar={<Image
                 width={100}
@@ -65,7 +76,7 @@ const MovieSearch: React.FC<{ movies:MovieList[] }> = ({
           </List.Item>
         )}
       />
-      </Space>
+      ): keyword ? <Empty/> : ''}
   </div>
   )
 };

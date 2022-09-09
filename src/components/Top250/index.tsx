@@ -1,6 +1,6 @@
 import { movie } from '@/services/top250';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Image, List, Space, Tag, Badge } from 'antd';
+import { Image, List, Space, Tag, Badge, Rate } from 'antd';
 import React, { useCallback } from 'react';
 import { history } from 'umi';
 
@@ -12,10 +12,22 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
 );
 
 const MovieSearch: React.FC<{ movies: movie[] }> = ({ movies }) => {
-  const onclick = useCallback(() => {
-    console.log(1111);
-    history.push('/table?id='+ 1111);
+  const wantTo = useCallback((id: string) => {
+    console.log(11111111, id);
+    // history.push('/table?id='+ id);
   }, []);
+
+  const like = useCallback((id: string) => {
+    console.log(11111111, id);
+    // history.push('/table/'+ id);
+  }, []);
+
+
+  const detail = useCallback((id: string) => {
+    console.log(11111111, id);
+    history.push('/detail/'+ id);
+  }, []);
+
 
   return (
     <div>
@@ -32,20 +44,26 @@ const MovieSearch: React.FC<{ movies: movie[] }> = ({ movies }) => {
         renderItem={(item) => (
           <List.Item
             key={item.id}
+            onClick={() => detail(item.id)}
             actions={[
               // eslint-disable-next-line react/jsx-key
-              <div onClick={onclick}>
+              <div onClick={() => wantTo(item.id)}>
                 <IconText
                   icon={StarOutlined}
                   text="156"
                   key="list-vertical-star-o"
                 />
               </div>,
+              
+              // eslint-disable-next-line react/jsx-key
+              <div onClick={() => like(item.id)}>
               <IconText
                 icon={LikeOutlined}
                 text="156"
                 key="list-vertical-like-o"
-              />,
+              />
+              </div>,
+
               <IconText
                 icon={MessageOutlined}
                 text="2"
@@ -61,7 +79,7 @@ const MovieSearch: React.FC<{ movies: movie[] }> = ({ movies }) => {
             <Badge.Ribbon text={item.imDbRatingCount} />
             {/* <Tag color="green">{item.rank}</Tag> */}
             <Tag color="green">{item.year}</Tag>
-            <Tag color="green">{item.imDbRating}</Tag>
+            <Rate allowHalf defaultValue={item.imDbRating} />
           </List.Item>
         )}
       />

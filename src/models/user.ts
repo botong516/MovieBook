@@ -7,8 +7,8 @@ const user = () => {
   const msg = useRequest(() => {
     console.log(1111)
     // queryMovieList()
-    const res = queryMovies()
-   
+    // const res = queryMovies()
+    // console.log(222222, res)
     return res
   });
 
@@ -23,7 +23,7 @@ const user = () => {
   };
   
   return {
-    dataSource: msg?.data??[],
+    dataSource: msg?.data,
     reload: msg?.run,
     loading: msg?.loading,
     like,

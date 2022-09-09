@@ -6,6 +6,7 @@ import MovieList from '@/components/Top250';
 
 const MovieSearchPage: React.FC = () => {
   const { dataSource, reload, loading, like }  = useModel('top250');
+    console.log(66668990, dataSource?.items)
   return (
     <PageContainer ghost>
       <div className={styles.container}>

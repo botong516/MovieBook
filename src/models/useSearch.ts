@@ -1,29 +1,34 @@
 import { useRequest } from 'umi';
 import {  message } from 'antd';
-import { SearchMovieList } from '@/services/search';
+import { useEffect, useState } from "react";
+import { queryMovieList, SearchMovieResp } from '@/services/search';
 
 
 const useSearch = () => {
-  const msg = useRequest(() =>{
-    const res = SearchMovieList()
-    return res
-  });
+  // const [movies, setMovies] = useState<SearchMovieResp>();
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await queryMovieList();
+  //     setMovies(data)
+  //   }
+  //   fetchData()
+  // }, []);
 
   const like = async (id: string) => {
     try {
       // await removeProducts(id);
       // console.log(id, keyword);
       message.success('success');
-      msg.run();
     } catch (error) {
       message.error('fail');
     }
   };
-  console.log(2222, msg?.data??[])
+
   return {
-    dataSource: msg.data,
-    reload: msg.run,
-    loading: msg.loading,
+    dataSource: '',
+    reload: '',
+    loading: '',
     like,
   };
 };
