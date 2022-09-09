@@ -25,7 +25,7 @@ export const request: RequestConfig = {
   errorConfig: {
     errorHandler(error) {
       if (error.response?.status === 401) {
-        history.push('/login');
+        history.push('/userLogin');
         return;
       }
       console.error('api error', error);

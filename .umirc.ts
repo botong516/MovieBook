@@ -21,6 +21,11 @@ export default defineConfig({
       changeOrigin: true,
       // pathRewrite: { '^/api': '' },
     },
+    '/login': {
+      target: 'http://localhost:8080',
+      changeOrigin: true,
+      // pathRewrite: { '^/api': '' },
+    },
   },
   routes: [
     {
@@ -54,6 +59,10 @@ export default defineConfig({
     {
       path: '/detail/:id',
       component: './Detail',
+    },
+    {
+      path: '/userlogin',
+      component: './Login',
     },
   ],
   npmClient: 'yarn',

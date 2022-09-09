@@ -3,7 +3,7 @@ import styles from './index.less';
 import { PageContainer } from '@ant-design/pro-components';
 import { useModel } from 'umi';
 import MovieSearch from '@/components/Sesrch';
-import { SearchMovieResp } from '@/services/search';
+
 
 const MovieSearchPage: React.FC = () => {
   const { fetchData, like, wantTo } = useModel('useSearch');
