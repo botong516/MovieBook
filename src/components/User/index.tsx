@@ -1,87 +1,57 @@
-import { movie } from '@/services/top250';
-import { Tabs, Tag, Space, Badge, Table } from 'antd';
+import { Tabs, Tag, Space, Table, Image } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import React from 'react';
+import { UserFavoriteData, UserMovie } from '@/services/user';
+import React, { useCallback } from 'react';
+import { history } from 'umi';
 
-const User: React.FC<{ movies: movie[] }> = ({ movies }) => {
-  interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-  }
+const UserFavorite: React.FC<{ userFavoriteData: UserFavoriteData }> = ({
+  userFavoriteData,
+}) => {
+  const toMovieDetail = useCallback((id: string) => {
+    console.log(11111111, id);
+    history.push('/detail/' + id);
+  }, []);
 
-  const columns: ColumnsType<DataType> = [
+  const columns: ColumnsType<UserMovie> = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? 'geekblue' : 'green';
-            if (tag === 'loser') {
-              color = 'volcano';
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
+      title: 'Title',
+      dataIndex: 'title',
+      key: 'title',
+      render: (_, record) => (
+        <a onClick={() => toMovieDetail(record.movieID)}>{record.title}</a>
       ),
     },
     {
-      title: 'Action',
-      key: 'action',
+      title: 'ThumbnailUrl',
+      dataIndex: 'thumbnailUrl',
+      key: 'thumbnailUrl',
+      render: (text) => <Image src={text} width={100} />,
+    },
+    {
+      title: 'Year',
+      dataIndex: 'year',
+      key: 'year',
+      render: (text) => <Tag>{text}</Tag>,
+    },
+    {
+      title: 'Video Description',
+      dataIndex: 'videoDescription',
+      key: 'videoDescription',
+    },
+    {
+      title: 'VideoTitle',
+      dataIndex: 'videoTitle',
+      key: 'videoTitle',
+    },
+    {
+      title: 'Tag',
+      key: 'thumbnailUrl',
       render: (_, record) => (
         <Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
+          {record.isWantToWatch ? <Tag>想看</Tag> : <Tag>看过</Tag>}
+          {record.islike ? <Tag>喜欢</Tag> : ''}
         </Space>
       ),
-    },
-  ];
-
-  const data: DataType[] = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
     },
   ];
 
@@ -89,14 +59,14 @@ const User: React.FC<{ movies: movie[] }> = ({ movies }) => {
     <div>
       <Tabs defaultActiveKey="1">
         <Tabs.TabPane tab="点赞列表" key="1">
-          <Table columns={columns} dataSource={data} />
+          <Table columns={columns} dataSource={userFavoriteData?.likeList} />
         </Tabs.TabPane>
         <Tabs.TabPane tab="收藏列表" key="2">
-          <Table columns={columns} dataSource={data} />
+          <Table columns={columns} dataSource={userFavoriteData?.wantToList} />
         </Tabs.TabPane>
       </Tabs>
     </div>
   );
 };
 
-export default User;
+export default UserFavorite;

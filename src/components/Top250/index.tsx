@@ -11,17 +11,11 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
   </Space>
 );
 
-const MovieSearch: React.FC<{ movies: movie[] }> = ({ movies }) => {
-  const wantTo = useCallback((id: string) => {
-    console.log(11111111, id);
-    // history.push('/table?id='+ id);
-  }, []);
-
-  const like = useCallback((id: string) => {
-    console.log(11111111, id);
-    // history.push('/table/'+ id);
-  }, []);
-
+const MovieSearch: React.FC<{
+  movies: movie[];
+  like: (id: string) => void;
+  wantTo: (id: string) => void;
+}> = ({ movies, like, wantTo }) => {
   const detail = useCallback((id: string) => {
     console.log(11111111, id);
     history.push('/detail/' + id);
@@ -45,7 +39,13 @@ const MovieSearch: React.FC<{ movies: movie[] }> = ({ movies }) => {
             onClick={() => detail(item.id)}
             actions={[
               // eslint-disable-next-line react/jsx-key
-              <div onClick={() => wantTo(item.id)}>
+              <div
+                style={{ cursor: 'pointer' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  wantTo(item.id);
+                }}
+              >
                 <IconText
                   icon={StarOutlined}
                   text="156"
@@ -54,7 +54,13 @@ const MovieSearch: React.FC<{ movies: movie[] }> = ({ movies }) => {
               </div>,
 
               // eslint-disable-next-line react/jsx-key
-              <div onClick={() => like(item.id)}>
+              <div
+                style={{ cursor: 'pointer' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  like(item.id);
+                }}
+              >
                 <IconText
                   icon={LikeOutlined}
                   text="156"

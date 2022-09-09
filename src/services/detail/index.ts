@@ -1,12 +1,7 @@
-export async function queryMovieDetail(imdbID: string) {
-  let resp: MovieDetailResp = {};
-  await fetch('http://localhost:8080/api/v1/movie/' + imdbID)
-    .then((res) => res.json())
-    .then((res) => {
-      resp = res;
-    });
+import { request } from '@umijs/max';
 
-  return resp;
+export async function queryMovieDetail(imdbID: string) {
+  return await request('/movie/' + imdbID);
 }
 
 export interface DirectorList {

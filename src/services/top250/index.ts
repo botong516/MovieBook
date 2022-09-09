@@ -1,14 +1,7 @@
+import { request } from '@umijs/max';
+
 export async function queryMovieList() {
-  let movies: Movies = {
-    items: [],
-    errorMessage: '',
-  };
-  await fetch('http://localhost:8080/api/v1/movie/top250')
-    .then((res) => res.json())
-    .then((res) => {
-      movies = res;
-    });
-  return movies;
+  return await request('/movie/top250');
 }
 
 export interface movie {

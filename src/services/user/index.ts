@@ -1,24 +1,51 @@
-export async function queryUserList(keyword: string) {
-  let resp: UserFavorite = {};
-  await fetch('http://localhost:8080/api/v1/movie/search?keyword=' + keyword)
-    .then((res) => res.json())
-    .then((res) => {
-      resp = res;
-    });
-  return resp;
+import { request } from '@umijs/max';
+
+export async function queryFavorite() {
+  return await request('/user/favorite');
 }
 
-export interface UserFavorite {
-  id: string;
-  resultType: string;
-  image: string;
+export async function savelike(movieID: string) {
+  let data = {
+    movieID: movieID,
+    like: 0,
+  };
+  return await request('/user/like', {
+    method: 'POST',
+    data: { ...data },
+  });
+}
+
+export async function saveWantTo(movieID: string) {
+  let data = {
+    movieID: movieID,
+    wantToWatch: 0,
+  };
+  return await request('/user/wanttowatch', {
+    method: 'POST',
+    data: { ...data },
+  });
+}
+
+export interface UserFavoriteData {
+  likeList: UserMovie[];
+  wantToList: UserMovie[];
+}
+
+export interface UserMovie {
+  id: number;
+  userID: number;
+  movieID: string;
+  isWantToWatch: number;
+  islike: number;
   title: string;
-  description: string;
-}
-
-export interface SearchMovieResp {
-  searchType: string;
-  expression: string;
-  results: MovieList[];
-  errorMessage: string;
+  fullTitle: string;
+  type: string;
+  year: string;
+  videoId?: any;
+  videoTitle: string;
+  videoDescription: string;
+  thumbnailUrl: string;
+  link: string;
+  createTime: Date;
+  updateTime: Date;
 }

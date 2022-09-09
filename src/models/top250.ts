@@ -1,32 +1,37 @@
 import { useRequest } from 'umi';
 import { message } from 'antd';
-import { useEffect, useRef, useState } from 'react';
-import { queryMovieList, queryMovies, Movies } from '@/services/top250';
+import { queryMovieList } from '@/services/top250';
+import { savelike, saveWantTo } from '@/services/user';
 
 const useMovieList = () => {
-  const [movies, setMovies] = useState<Movies>();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await queryMovieList();
-      setMovies(data);
-    };
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+    const data = await queryMovieList();
+    return data;
+  };
 
   const like = async (id: string) => {
     try {
-      // await removeProducts(id);
+      await savelike(id);
       message.success('success');
     } catch (error) {
+      console.log(1111, error);
+      message.error('fail');
+    }
+  };
+
+  const wantTo = async (id: string) => {
+    try {
+      await saveWantTo(id);
+      message.success('success');
+    } catch (error) {
+      console.log(1111, error);
       message.error('fail');
     }
   };
 
   return {
-    dataSource: movies,
-    reload: '',
-    loading: '',
+    fetchData,
+    wantTo,
     like,
   };
 };

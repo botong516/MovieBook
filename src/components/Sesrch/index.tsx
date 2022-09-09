@@ -1,9 +1,9 @@
 import { MovieList } from '@/services/search';
-import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Image, List, Space, Input, Empty } from 'antd';
-import { ProList } from '@ant-design/pro-components';
+import { LikeOutlined, StarOutlined, StarFilled } from '@ant-design/icons';
+import { Image, List, Space, Input, Empty, Skeleton } from 'antd';
 import React, { useCallback, useState } from 'react';
-import { queryMovieList, SearchMovieResp } from '@/services/search';
+import { SearchMovieResp } from '@/services/search';
+import styles from './index.less';
 import { history } from 'umi';
 
 const { Search } = Input;
@@ -15,24 +15,33 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
   </Space>
 );
 
-const MovieSearch: React.FC<{ movies: MovieList[] }> = ({}) => {
+const MovieSearch: React.FC<{
+  fetchData: (keyword: string) => SearchMovieResp;
+  like: (id: string) => void;
+  wantTo: (id: string) => void;
+}> = ({ fetchData, like, wantTo }) => {
   const [keyword, setKeyword] = useState<string>('');
   const [movieList, setMovieList] = useState<MovieList[]>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [star, setStar] = useState<boolean>(false);
 
   const onSearch = useCallback(
-    (value: any) => {
+    async (value: any) => {
+      setLoading(true);
       setKeyword(value);
-      const fetchData = async () => {
-        const data = await queryMovieList(value);
-        setMovieList(data?.results);
-      };
-      fetchData();
+      const resp = await fetchData(value);
+      console.log(1111, resp.results);
+      setMovieList(resp?.results);
+      setLoading(false);
     },
     [keyword],
   );
 
+  // const star = useCallback(() => {
+
+  // }, []);
+
   const detail = useCallback((id: string) => {
-    console.log(11111111, id);
     history.push('/detail/' + id);
   }, []);
 
@@ -45,14 +54,18 @@ const MovieSearch: React.FC<{ movies: MovieList[] }> = ({}) => {
         size="large"
         onSearch={onSearch}
       />
-      {movieList ? (
+      {loading ? (
+        <div className={styles.container}>
+          <Skeleton active />
+        </div>
+      ) : movieList ? (
         <List
           itemLayout="vertical"
           size="large"
           // pagination={{
           //   onChange: page => {
           //     console.log(page);
-          //   },
+          //   },ant-spin-container
           //   pageSize: 1000,
           // }}
           dataSource={movieList}
@@ -61,16 +74,35 @@ const MovieSearch: React.FC<{ movies: MovieList[] }> = ({}) => {
               key={item.id}
               onClick={() => detail(item.id)}
               actions={[
-                <IconText
-                  icon={StarOutlined}
-                  text="156"
-                  key="list-vertical-star-o"
-                />,
-                <IconText
-                  icon={LikeOutlined}
-                  text="156"
-                  key="list-vertical-like-o"
-                />,
+                <div
+                  key={item.id}
+                  style={{ cursor: 'pointer' }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    wantTo(item.id);
+                  }}
+                >
+                  <IconText
+                    icon={StarOutlined}
+                    text="156"
+                    key="list-vertical-star-o"
+                  />
+                </div>,
+
+                // eslint-disable-next-line react/jsx-key
+                <div
+                  style={{ cursor: 'pointer' }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    like(item.id);
+                  }}
+                >
+                  <IconText
+                    icon={LikeOutlined}
+                    text="156"
+                    key="list-vertical-like-o"
+                  />
+                </div>,
               ]}
             >
               <List.Item.Meta

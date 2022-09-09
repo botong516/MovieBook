@@ -4,7 +4,6 @@ import { queryMovies } from '@/services/top250';
 
 const useMovieList = () => {
   const msg = useRequest(() => {
-    console.log(1111);
     // queryMovieList()
     const res = queryMovies();
 

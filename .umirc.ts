@@ -11,9 +11,9 @@ export default defineConfig({
   },
   proxy: {
     '/api': {
-      'target': 'http://localhost:8080',
-      'changeOrigin': true,
-      'pathRewrite': { '^/api' : '' },
+      target: 'http://localhost:8080',
+      changeOrigin: true,
+      // pathRewrite: { '^/api': '' },
     },
   },
   routes: [
@@ -37,15 +37,14 @@ export default defineConfig({
       component: './Top250',
     },
     {
-        name: '用户收藏',
-        path: '/User',
-        component: './User',
+      name: '用户收藏',
+      path: '/user',
+      component: './UserFavorite',
     },
     {
       path: '/detail/:id',
       component: './Detail',
-  },
+    },
   ],
   npmClient: 'yarn',
 });
-
