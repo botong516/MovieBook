@@ -42,7 +42,6 @@ export default defineConfig({
         component: './User',
     },
     {
-      name: '电影详情',
       path: '/detail/:id',
       component: './Detail',
   },

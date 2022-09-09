@@ -1,4 +1,4 @@
-import { Image, Avatar,  Descriptions, Badge, Card, Row,Col } from 'antd';
+import { Image, Rate,  Descriptions, Badge, Card, Row,Col } from 'antd';
 import React , { useEffect, useState } from 'react';
 import { queryMovieDetail, MovieDetailResp } from '@/services/detail';
 
@@ -20,26 +20,53 @@ const MovieDetail: React.FC<{ id:string }> = ({
 
   return (
     <div>
-      <Descriptions title={<Image width={300} src={movieDetailResp?.image}></Image>}  bordered>
-        <Descriptions.Item label="FullTitle">
-          <Badge status="processing" text={movieDetailResp?.title} />
-        </Descriptions.Item>
-        <Descriptions.Item label="Directors">
-          <Badge status="processing" text={movieDetailResp?.directors} />
-        </Descriptions.Item>
-        <Descriptions.Item label="Year">{movieDetailResp?.year}</Descriptions.Item>
-        <Descriptions.Item label="Runtime">{movieDetailResp?.runtimeMins} min</Descriptions.Item>
-        <Descriptions.Item label="Status" span={3}>
-          <Badge status="processing" text={movieDetailResp?.plot} />
-        </Descriptions.Item>
-        <Descriptions.Item label="Awards" span={3}>
-          <Badge status="processing" text={movieDetailResp?.awards} />
-        </Descriptions.Item>
-        <Descriptions.Item label="Stars" span={3}>
-          <Badge status="processing" text={movieDetailResp?.stars} />
-        </Descriptions.Item>
-      </Descriptions>
+      <Row gutter={16}>
+        <Col className="gutter-row" span={8}>
+         <Image width={400} src={movieDetailResp?.image}></Image>
+        </Col>
+        <Col className="gutter-row" span={16}>
+          <Descriptions  bordered>
+            <Descriptions.Item label="Title" span={3}>
+              <Badge status="processing" text={movieDetailResp?.title + `  (` +movieDetailResp?.fullTitle+ `)`} />
+            </Descriptions.Item>
+            <Descriptions.Item label="Directors" span={3}>
+              <Badge status="processing" text={movieDetailResp?.directors} />
+            </Descriptions.Item>
 
+            <Descriptions.Item label="Writers" span={3}>
+              <Badge status="processing" text={movieDetailResp?.writers} />
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Year" span={3}>
+              <Badge status="processing" text={movieDetailResp?.year} />
+            </Descriptions.Item>
+            <Descriptions.Item label="Runtime" span={3}>
+              <Badge status="processing" text={movieDetailResp?.runtimeStr} />
+            </Descriptions.Item>
+            <Descriptions.Item label="Plot" span={3}>
+              <Badge status="processing" text={movieDetailResp?.plot} />
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Companies" span={3}>
+              <Badge status="processing" text={movieDetailResp?.companies} />
+            </Descriptions.Item>
+
+            <Descriptions.Item label="Countries" span={3}>
+              <Badge status="processing" text={movieDetailResp?.countries} />
+            </Descriptions.Item>
+            
+            <Descriptions.Item label="Awards" span={3}>
+              <Badge status="processing" text={movieDetailResp?.awards} />
+            </Descriptions.Item>
+            <Descriptions.Item label="Stars" span={3}>
+              <Badge status="processing" text={movieDetailResp?.stars} />
+            </Descriptions.Item>
+            <Rate allowHalf defaultValue={movieDetailResp?.imDbRating} />
+          </Descriptions>
+        </Col>
+      </Row>
+      <br></br>
+      <br></br>
       <Card title="Actors" >
         <Row gutter={16}>
           {movieDetailResp?.actorList.map(item => (

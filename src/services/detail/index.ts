@@ -98,7 +98,7 @@ export async function queryMovieDetail(imdbID: string) {
       languages: string;
       languageList: LanguageList[];
       contentRating: string;
-      imDbRating: string;
+      imDbRating: number;
       imDbRatingVotes: string;
       metacriticRating: string;
       ratings?: any;
