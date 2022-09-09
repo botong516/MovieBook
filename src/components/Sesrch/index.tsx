@@ -23,14 +23,12 @@ const MovieSearch: React.FC<{
   const [keyword, setKeyword] = useState<string>('');
   const [movieList, setMovieList] = useState<MovieList[]>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [star, setStar] = useState<boolean>(false);
 
   const onSearch = useCallback(
     async (value: any) => {
       setLoading(true);
       setKeyword(value);
       const resp = await fetchData(value);
-      console.log(1111, resp.results);
       setMovieList(resp?.results);
       setLoading(false);
     },
@@ -38,7 +36,6 @@ const MovieSearch: React.FC<{
   );
 
   // const star = useCallback(() => {
-
   // }, []);
 
   const detail = useCallback((id: string) => {
@@ -84,7 +81,7 @@ const MovieSearch: React.FC<{
                 >
                   <IconText
                     icon={StarOutlined}
-                    text="156"
+                    text="Want To Watch"
                     key="list-vertical-star-o"
                   />
                 </div>,
@@ -99,7 +96,7 @@ const MovieSearch: React.FC<{
                 >
                   <IconText
                     icon={LikeOutlined}
-                    text="156"
+                    text="Like"
                     key="list-vertical-like-o"
                   />
                 </div>,

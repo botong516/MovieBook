@@ -8,7 +8,6 @@ const UserFavorite: React.FC<{ userFavoriteData: UserFavoriteData }> = ({
   userFavoriteData,
 }) => {
   const toMovieDetail = useCallback((id: string) => {
-    console.log(11111111, id);
     history.push('/detail/' + id);
   }, []);
 

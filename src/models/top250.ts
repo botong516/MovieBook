@@ -14,7 +14,6 @@ const useMovieList = () => {
       await savelike(id);
       message.success('success');
     } catch (error) {
-      console.log(1111, error);
       message.error('fail');
     }
   };
@@ -24,7 +23,6 @@ const useMovieList = () => {
       await saveWantTo(id);
       message.success('success');
     } catch (error) {
-      console.log(1111, error);
       message.error('fail');
     }
   };

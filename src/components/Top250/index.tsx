@@ -1,7 +1,12 @@
 import { movie } from '@/services/top250';
-import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
+import {
+  LikeOutlined,
+  MessageOutlined,
+  StarOutlined,
+  StarFilled,
+} from '@ant-design/icons';
 import { Image, List, Space, Tag, Badge, Rate } from 'antd';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { history } from 'umi';
 
 const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
@@ -16,10 +21,14 @@ const MovieSearch: React.FC<{
   like: (id: string) => void;
   wantTo: (id: string) => void;
 }> = ({ movies, like, wantTo }) => {
+  // const [star, setStar] = useState<boolean>(false);
+
   const detail = useCallback((id: string) => {
-    console.log(11111111, id);
     history.push('/detail/' + id);
   }, []);
+
+  // const starFuc = useCallback(() => {
+  // }, []);
 
   return (
     <div>
@@ -44,11 +53,12 @@ const MovieSearch: React.FC<{
                 onClick={(e) => {
                   e.stopPropagation();
                   wantTo(item.id);
+                  // starFuc();
                 }}
               >
                 <IconText
                   icon={StarOutlined}
-                  text="156"
+                  text="Want To Watch"
                   key="list-vertical-star-o"
                 />
               </div>,
@@ -63,16 +73,10 @@ const MovieSearch: React.FC<{
               >
                 <IconText
                   icon={LikeOutlined}
-                  text="156"
+                  text="Like"
                   key="list-vertical-like-o"
                 />
               </div>,
-
-              <IconText
-                icon={MessageOutlined}
-                text="2"
-                key="list-vertical-message"
-              />,
             ]}
           >
             <List.Item.Meta
@@ -83,7 +87,7 @@ const MovieSearch: React.FC<{
             <Badge.Ribbon text={item.imDbRatingCount} />
             {/* <Tag color="green">{item.rank}</Tag> */}
             <Tag color="green">{item.year}</Tag>
-            <Rate allowHalf defaultValue={item.imDbRating} />
+            <Rate allowHalf defaultValue={item.imDbRating / 2} />
           </List.Item>
         )}
       />

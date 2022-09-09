@@ -22,7 +22,6 @@ const MovieDetail: React.FC<{ id: string }> = ({ id }) => {
     setLoading(true);
     const fetchData = async () => {
       const data = await queryMovieDetail(id);
-      console.log(1111, data);
       setMovieDetailResp(data);
     };
     fetchData();
