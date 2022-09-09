@@ -57,11 +57,24 @@ const UserFavorite: React.FC<{ userFavoriteData: UserFavoriteData }> = ({
   return (
     <div>
       <Tabs defaultActiveKey="1">
-        <Tabs.TabPane tab="点赞列表" key="1">
+        <Tabs.TabPane tab="Recently Liked" key="1">
           <Table columns={columns} dataSource={userFavoriteData?.likeList} />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="收藏列表" key="2">
+        <Tabs.TabPane tab="Watch Later" key="2">
           <Table columns={columns} dataSource={userFavoriteData?.wantToList} />
+        </Tabs.TabPane>
+        <Tabs.TabPane tab="Watch Now!" >
+          <a href="https://www.imdb.com/" target="_blank" rel="noopener noreferrer">
+            Go to IMDb!
+          </a>
+          <br />
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+            Go to YouTube!
+          </a>
+          <br />
+          <a href="https://www.hbomax.com/?utm_id=sa%7c71700000067030777%7c58700007674721711%7cp69454722250&gclid=Cj0KCQjwyOuYBhCGARIsAIdGQRMcdAGLAI3JPUiG631Q6oFNN3uoi1QgiYsKuD1f5V_KcOWEsEJD5YMaArAyEALw_wcB&gclsrc=aw.ds" target="_blank" rel="noopener noreferrer">
+            Go to HBO!
+          </a>
         </Tabs.TabPane>
       </Tabs>
     </div>

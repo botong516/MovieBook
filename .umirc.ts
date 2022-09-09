@@ -1,4 +1,5 @@
 import { defineConfig } from '@umijs/max';
+import { BookOutlined, FireOutlined, HistoryOutlined, SearchOutlined} from '@ant-design/icons';
 
 export default defineConfig({
   antd: {},
@@ -7,7 +8,7 @@ export default defineConfig({
   initialState: {},
   request: {},
   layout: {
-    title: 'MoviesBook',
+    title: 'MovieBook',
   },
   proxy: {
     '/api': {
@@ -22,23 +23,27 @@ export default defineConfig({
       redirect: '/home',
     },
     {
-      name: '主页',
+      name: 'Home',
       path: '/home',
+      icon: 'dashboard',
       component: './Home',
     },
     {
-      name: '电影搜索',
+      name: 'Search',
       path: '/search',
+      icon: 'SearchOutlined',
       component: './Search',
     },
     {
-      name: '最受欢迎TOP250',
+      name: 'IMDb TOP 250 Movies',
       path: '/top250',
+      icon: 'fireOutlined',
       component: './Top250',
     },
     {
-      name: '用户收藏',
+      name: 'My Movie Lists',
       path: '/user',
+      icon: 'bookOutlined',
       component: './UserFavorite',
     },
     {

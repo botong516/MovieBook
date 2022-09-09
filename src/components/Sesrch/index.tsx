@@ -1,5 +1,5 @@
 import { MovieList } from '@/services/search';
-import { LikeOutlined, StarOutlined, StarFilled } from '@ant-design/icons';
+import { LikeOutlined, StarOutlined, StarFilled, SearchOutlined } from '@ant-design/icons';
 import { Image, List, Space, Input, Empty, Skeleton } from 'antd';
 import React, { useCallback, useState } from 'react';
 import { SearchMovieResp } from '@/services/search';
@@ -45,7 +45,7 @@ const MovieSearch: React.FC<{
   return (
     <div>
       <Search
-        placeholder="input search movie title"
+        placeholder="Search movies now!"
         allowClear
         enterButton="Search"
         size="large"
@@ -81,7 +81,7 @@ const MovieSearch: React.FC<{
                 >
                   <IconText
                     icon={StarOutlined}
-                    text="Want To Watch"
+                    text="Want to Watch"
                     key="list-vertical-star-o"
                   />
                 </div>,

@@ -29,7 +29,7 @@ export const request: RequestConfig = {
         return;
       }
       console.error('api error', error);
-      message.error(error?.response?.data?.message || '请求错误');
+      message.error(error?.response?.data?.message || 'Request Error');
     },
     errorThrower() {},
   },
