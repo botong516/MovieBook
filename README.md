@@ -1,18 +1,45 @@
-# README
+# MovieBook (Frontend part)
+This is the frontend repository for the web application MovieBook! 
 
-react hook
+The website is a movie log book for users to search and browse movie information, like and track the movies they've watched, and saved movies they want to watch later. Users could get access to the full and real movie library from IMDb including the TOP 250 popular movie list, movie description, director and cast imforamtion, film posters and stills, and the real rating information by millions of reviewers on IMDb! 
 
-Antd https://ant.design/docs/react/practical-projects-cn
+## Features covered by the project
+## Frontend:
+- Components
+- Mobile responsiveness
 
-Umi https://umijs.org/docs/api/runtime-config
+## Backend:
+- User registration and login
+- API calls
+- Integration with database
+- Classes and objects
 
-node -v 14 brew install nvm nvm use 14 brew install yarn yarn global add umi  
-$ yarn Start the dev server,
+## Full-stack:
+- Linking together a frontend framework with a backend framework (Spring Boot with React/TypeScript)
 
-$ yarn start UI 以及功能列表
+## Time Use
+10 hours
 
-电影主页【search，点赞，收藏】电影详情页【详情接口】- 用户主页【当前用户收藏和点赞列表】登陆/注册 【登陆/注册 】今日优先级（先 UI，后逻辑，最后样式） 电影主页 - 电影详情页 - 用户主页 （layout） 登陆/注册
+## Video Demo
 
-明天 后端 service 接口请求 以及 交互逻辑。
+## How to Use
+1. Clone the repository in your local
 
-`@umijs/max` 模板项目，更多功能参考 [Umi Max 简介](https://next.umijs.org/zh-CN/docs/max/introduce)
+2. Change node version to 14
+```node -v```   
+```brew install nvm```   
+```nvm use 14```   
+
+3. Install yarn and add Umi
+```brew install yarn```   
+```yarn global add umi```   
+
+4. Open the project and start yarn
+```yarn start```
+
+
+## Resources
+
+**Antd** https://ant.design/docs/react/practical-projects-cn
+
+**Umi** https://umijs.org/docs/api/runtime-config
