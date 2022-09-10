@@ -17,11 +17,16 @@ export default defineConfig({
   },
   proxy: {
     '/api': {
-      target: 'https://moviebook-log.herokuapp.com/',
+      target: 'http://localhost:8080',
       changeOrigin: true,
       // pathRewrite: { '^/api': '' },
     },
     '/login': {
+      target: 'http://localhost:8080',
+      changeOrigin: true,
+      // pathRewrite: { '^/api': '' },
+    },
+    '/register': {
       target: 'http://localhost:8080',
       changeOrigin: true,
       // pathRewrite: { '^/api': '' },
@@ -63,6 +68,10 @@ export default defineConfig({
     {
       path: '/userlogin',
       component: './Login',
+    },
+    {
+      path: '/userregister',
+      component: './Register',
     },
   ],
   npmClient: 'yarn',

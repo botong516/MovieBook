@@ -6,13 +6,11 @@ import {
   ProFormText,
   PageContainer,
 } from '@ant-design/pro-components';
-import { message, Space } from 'antd';
+import { message, Button, Space } from 'antd';
 import { Login } from '@/services/login';
 import { history } from 'umi';
 
 export default () => {
-  const [httpCode, setHttpCode] = useState<number>();
-
   const onSubmit = async (values: any) => {
     const useLogin = async () => {
       return await Login(values);
@@ -20,7 +18,6 @@ export default () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     await useLogin()
       .then((response) => {
-        setHttpCode(response.status);
         if (response.status === 200) {
           message.success('Login successful!');
           history.push('/home');
@@ -36,15 +33,30 @@ export default () => {
 
   const onFocus = () => {};
 
+  const register = useCallback(() => {
+    history.push('/userregister');
+  }, []);
+
   return (
     <PageContainer ghost>
       <div>
-        {' '}
         <div>
           <LoginForm
             title="Welcome to MovieBook!"
             subTitle="Please login into your account"
-            // actions={<Space>注册</Space>}
+            actions={
+              <Button
+                onClick={() => register()}
+                type="primary"
+                style={{
+                  marginBottom: '10px',
+                  width: 328,
+                  height: 40,
+                }}
+              >
+                <span style={{ fontSize: 16 }}>注册</span>
+              </Button>
+            }
             onFinish={onSubmit}
             onFocus={onFocus}
           >
@@ -55,11 +67,11 @@ export default () => {
                   size: 'large',
                   prefix: <UserOutlined className={'prefixIcon'} />,
                 }}
-                placeholder={'Username'}
+                placeholder={'用户名: admin or user'}
                 rules={[
                   {
                     required: true,
-                    message: 'Please enter your username!',
+                    message: '请输入用户名!',
                   },
                 ]}
               />
@@ -69,11 +81,11 @@ export default () => {
                   size: 'large',
                   prefix: <LockOutlined className={'prefixIcon'} />,
                 }}
-                placeholder={'Password'}
+                placeholder={'密码'}
                 rules={[
                   {
                     required: true,
-                    message: 'Please enter your password!',
+                    message: '请输入密码！',
                   },
                 ]}
               />
