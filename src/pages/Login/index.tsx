@@ -22,15 +22,15 @@ export default () => {
       .then((response) => {
         setHttpCode(response.status);
         if (response.status === 200) {
-          message.success('恭喜登陆成功！');
+          message.success('Login successful!');
           history.push('/home');
         } else {
-          message.error('登陆失败，请重新登陆');
+          message.error('Login failed: Please try again');
         }
       })
       .catch((error) => {
         console.error(error);
-        message.error('登陆失败，请重新登陆');
+        message.error('Login failed: Please try again');
       });
   };
 
@@ -42,8 +42,8 @@ export default () => {
         {' '}
         <div>
           <LoginForm
-            title="欢迎来到MovieBook"
-            subTitle="请登陆"
+            title="Welcome to MovieBook!"
+            subTitle="Please login into your account"
             // actions={<Space>注册</Space>}
             onFinish={onSubmit}
             onFocus={onFocus}
@@ -55,11 +55,11 @@ export default () => {
                   size: 'large',
                   prefix: <UserOutlined className={'prefixIcon'} />,
                 }}
-                placeholder={'用户名: admin or user'}
+                placeholder={'Username'}
                 rules={[
                   {
                     required: true,
-                    message: '请输入用户名!',
+                    message: 'Please enter your username!',
                   },
                 ]}
               />
@@ -69,11 +69,11 @@ export default () => {
                   size: 'large',
                   prefix: <LockOutlined className={'prefixIcon'} />,
                 }}
-                placeholder={'密码'}
+                placeholder={'Password'}
                 rules={[
                   {
                     required: true,
-                    message: '请输入密码！',
+                    message: 'Please enter your password!',
                   },
                 ]}
               />
@@ -84,14 +84,14 @@ export default () => {
               }}
             >
               <ProFormCheckbox noStyle name="autoLogin">
-                自动登录
+                Remember me
               </ProFormCheckbox>
               <a
                 style={{
                   float: 'right',
                 }}
               >
-                忘记密码
+                Forget your password?
               </a>
             </div>
           </LoginForm>
