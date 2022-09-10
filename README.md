@@ -25,12 +25,12 @@ The website is a movie log book for users to search and browse movie information
 ## How to Use
 1. Clone the repository in your local
 
-2. Change node version to 14
+2. Change node version to 14   
 ```node -v```   
 ```brew install nvm```   
 ```nvm use 14```   
 
-3. Install yarn and add Umi
+3. Install yarn and add Umi   
 ```brew install yarn```   
 ```yarn global add umi```   
 
