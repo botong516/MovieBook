@@ -47,8 +47,8 @@ const UserFavorite: React.FC<{ userFavoriteData: UserFavoriteData }> = ({
       key: 'thumbnailUrl',
       render: (_, record) => (
         <Space size="middle">
-          {record.isWantToWatch ? <Tag>想看</Tag> : <Tag>看过</Tag>}
-          {record.islike ? <Tag>喜欢</Tag> : ''}
+          {record.isWantToWatch ? <Tag>Want to Watch</Tag> : <Tag>Watched</Tag>}
+          {record.islike ? <Tag>Liked</Tag> : ''}
         </Space>
       ),
     },
@@ -63,16 +63,28 @@ const UserFavorite: React.FC<{ userFavoriteData: UserFavoriteData }> = ({
         <Tabs.TabPane tab="Watch Later" key="2">
           <Table columns={columns} dataSource={userFavoriteData?.wantToList} />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Watch Now!" >
-          <a href="https://www.imdb.com/" target="_blank" rel="noopener noreferrer">
+        <Tabs.TabPane tab="Watch Now!">
+          <a
+            href="https://www.imdb.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Go to IMDb!
           </a>
           <br />
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.youtube.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Go to YouTube!
           </a>
           <br />
-          <a href="https://www.hbomax.com/?utm_id=sa%7c71700000067030777%7c58700007674721711%7cp69454722250&gclid=Cj0KCQjwyOuYBhCGARIsAIdGQRMcdAGLAI3JPUiG631Q6oFNN3uoi1QgiYsKuD1f5V_KcOWEsEJD5YMaArAyEALw_wcB&gclsrc=aw.ds" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.hbomax.com/?utm_id=sa%7c71700000067030777%7c58700007674721711%7cp69454722250&gclid=Cj0KCQjwyOuYBhCGARIsAIdGQRMcdAGLAI3JPUiG631Q6oFNN3uoi1QgiYsKuD1f5V_KcOWEsEJD5YMaArAyEALw_wcB&gclsrc=aw.ds"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Go to HBO!
           </a>
         </Tabs.TabPane>
