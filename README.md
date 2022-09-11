@@ -1,5 +1,6 @@
 # MovieBook (Frontend part)
-This is the frontend repository for the web application MovieBook! Website link: http://ec2-34-205-53-240.compute-1.amazonaws.com
+This is the frontend repository for the web application MovieBook!   
+Website link: http://ec2-34-205-53-240.compute-1.amazonaws.com
 
 The website is a movie log book for users to search and browse movie information, like and track the movies they've watched, and saved movies they want to watch later. Users could get access to the full and real movie library from IMDb including the TOP 250 popular movie list, movie description, director and cast imforamtion, film posters and stills, and the real rating information by millions of reviewers on IMDb! 
 
@@ -24,7 +25,7 @@ The website is a movie log book for users to search and browse movie information
 https://upenn.zoom.us/rec/play/fvu0usSTqeG4M_Wwj9mrwFb8mKWKPA27ulEACSZR4M-K-MJDMRxFC_1-PchLcFyA0PBct6vEpE8wUDbF.wIauww93iEq1bwtG?autoplay=true&startTime=1662787124000   
 Passcode: !y=b2LfJ
 
-## How to Use
+## How to run in local
 1. Clone the repository in your local
 
 2. Change node version to 14   
