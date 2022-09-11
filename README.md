@@ -16,7 +16,8 @@ The website is a movie log book for users to search and browse movie information
 - Classes and objects
 
 ## Full-stack:
-- Linking together a frontend framework with a backend framework (Spring Boot with React/TypeScript)
+- Linking together a frontend framework with a backend framework (Spring Boot with React/TypeScript)   
+- Deploy
 
 ## Time Use
 10 hours
